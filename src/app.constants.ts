@@ -1,0 +1,4 @@
+export const USER_REPOSITORY:string = "USER_REPOSITORY"
+export const DATABASE_CONNECTION:string = "DATABASE_CONNECTION"
+export const POST_REPOSITORY:string = "POST_REPOSITORY"
+
