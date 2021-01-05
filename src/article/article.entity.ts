@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { User } from "./user.entity";
+import { User } from "../user/user.entity";
 
 @Entity()
-export class Post {
+export class Article {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,11 +10,14 @@ export class Post {
   title: string;
 
   @Column()
+  content:string
+
+  @Column()
   numberOfWords: number;
 
   @Column({type: 'date'})
   date: Date
 
-  @ManyToOne(() => User, user => user.posts)
+  @ManyToOne(() => User, user => user.articles)
   user: User;
 }

@@ -1,5 +1,5 @@
 import { Connection } from "typeorm";
-import { User } from "../models/user.entity";
+import { User } from "./user.entity";
 import { DATABASE_CONNECTION, USER_REPOSITORY } from "../app.constants";
 
 export const userProviders = [

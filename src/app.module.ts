@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './module/users.module';
-import { RegController } from './controllers/reg.controller';
-import { AppController } from './controllers/app.controller';
+import { UsersModule } from './user/users.module';
+import { UserController } from './user/user.controller';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Connection } from "typeorm";
-import { Post } from "./models/post.entity";
-import { User } from "./models/user.entity";
+import { Article } from "./article/article.entity";
+import { User } from "./user/user.entity";
+import { ArticleController } from "./article/article.controller";
+import { ArticleModule } from "./article/article.module";
 
 @Module({
   imports: [
@@ -18,14 +19,15 @@ import { User } from "./models/user.entity";
       username: 'postgres',
       password: 'root',
       database: 'blog',
-      entities: [User, Post],
+      entities: [User, Article],
       synchronize: true,
       autoLoadEntities:true
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    ArticleModule
   ],
-  controllers: [AppController, RegController],
+  controllers: [UserController, ArticleController],
   providers: [AppService]
 })
 export class AppModule {
