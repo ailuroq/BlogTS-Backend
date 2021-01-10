@@ -18,7 +18,7 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findOne(username: string): Promise<User> {
+    findOne(username: string): Promise<User> {
     return this.userRepository.findOne({ username: username });
   }
   findById(id: any): Promise<User> {
@@ -33,12 +33,17 @@ export class UsersService {
     await this.userRepository.delete(id);
   }
 
-  async addPost(postDto:CreateArticleDto, userDto:CreateUserDto):Promise<void>{
-    const { id, title, content, numberOfWords, date, userId } = postDto;
-    await this.userRepository.save(postDto)
+  async addArticle(articleDto:CreateArticleDto, userDto:CreateUserDto):Promise<void>{
+    const { id, title, content, numberOfWords, date, userId } = articleDto;
+    await this.userRepository.save(articleDto)
   }
-  async getPostsOfUser(id: number): Promise<Article[]> {
-    const user = await this.userRepository.findOne({where:{id:id}, relations:['articles']})
+  async getArticlesOfUser(username:string): Promise<Article[]> {
+    const user = await this.userRepository.findOne({where:{username:username}, relations:['articles']})
     return user.articles
   }
+  async getCommentsOfArticle(id: number){}
+  /*async getCertainArticle(username:string,id:number):Promise<Article> {
+    const user = await this.userRepository.findOne({where:{id:id}, relations:['articles']})
+    return user.articles
+  }*/
 }

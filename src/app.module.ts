@@ -9,6 +9,8 @@ import { Article } from "./article/article.entity";
 import { User } from "./user/user.entity";
 import { ArticleController } from "./article/article.controller";
 import { ArticleModule } from "./article/article.module";
+import { Commentary } from "./comments/comment.entity";
+import { AdminController } from "./common/admin.controller";
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { ArticleModule } from "./article/article.module";
       username: 'postgres',
       password: 'root',
       database: 'blog',
-      entities: [User, Article],
+      entities: [User, Article, Commentary],
       synchronize: true,
       autoLoadEntities:true
     }),
@@ -27,7 +29,7 @@ import { ArticleModule } from "./article/article.module";
     UsersModule,
     ArticleModule
   ],
-  controllers: [UserController, ArticleController],
+  controllers: [UserController, ArticleController, AdminController],
   providers: [AppService]
 })
 export class AppModule {
